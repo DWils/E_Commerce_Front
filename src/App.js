@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import PageListerProduits from './pages/PageListerProduits';
+import Connexion from './pages/Connexion';
+import Header from './components/Header';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import PageDetailProduit from './pages/PageDetailProduit';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Header />
+          <Switch>
+            <Route exact path='/login' component={Connexion} />
+            <Route exact path='/listerProduits' component={PageListerProduits} />
+            <Route exact path='/produit/:productId' component={PageDetailProduit} />
+          </Switch>
+        </BrowserRouter>
+      </Provider>
     </div>
   );
 }
