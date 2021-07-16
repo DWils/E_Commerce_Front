@@ -37,7 +37,7 @@ export default function CardProduct(props) {
         // <Link to={`/produit/${id}`}>
         <Card className={classes.root} variant="outlined">
             <CardContent>
-                <ImageProduit productName={productName}/>
+                <ImageProduit productName={productName} zone="listeProduit"/>
                 <Typography variant="h5" component="h2">
                     {productName}
                 </Typography>

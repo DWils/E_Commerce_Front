@@ -119,7 +119,9 @@ input[type="password"]
   padding: 0;
   width: 100%;
   display: flex;
-  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
 }
 
 .cart-item-card {
@@ -143,10 +145,16 @@ input[type="password"]
   padding: 20px;
 }
 
-.image-produit {
+.image-produit.listeProduit {
   max-width: 15rem;
   min-height: 15rem;
   max-height: 15rem;
+}
+
+.image-produit.panier {
+  max-width: 10rem;
+  min-height: 10rem;
+  max-height: 10rem;
 }
 
 .cart-items li div {

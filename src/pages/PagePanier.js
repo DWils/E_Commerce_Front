@@ -2,6 +2,7 @@ import React from 'react'
 import defaultImage from '../img/defaultImage.png'
 import { useHistory } from 'react-router-dom'
 import { Button , makeStyles } from '@material-ui/core'
+import ImageProduit from '../components/ImageProduit';
 
 const useStyles = makeStyles({
    
@@ -34,7 +35,7 @@ const PagePanier = ({cartItems = [] , removeFromCart }) => {
             <div className="cart-items">
                 {cartItems.map(item =>(
                     <div key={item.id} className="cart-item-card">
-                        <div><img src={defaultImage} alt="defaultImage" /></div>
+                        <div><ImageProduit productName={item.productName} zone="panier"/></div>
                         <div>{item.productName}</div>
                         <div>{item.unitPrice} € x {item.count}</div>
                         <Button className={classes.btn_remove} onClick={() => removeFromCart(item)}>Supprimer</Button>
@@ -46,7 +47,7 @@ const PagePanier = ({cartItems = [] , removeFromCart }) => {
         <div className="cart">
             <div className="total">
                 <div>
-                    {cartItems.reduce((a,c) => a + c.unitPrice * c.count,0)} €
+                    {Math.round(cartItems.reduce((a,c) => a + c.unitPrice * c.count,0)*100)/100} €
                 </div>
                 <Button className={classes.btn_proceed}>
                     Payer
