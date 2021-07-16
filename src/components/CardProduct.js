@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
+import defaultImage from '../img/defaultImage.png'
 
 const useStyles = makeStyles({
     root: {
@@ -28,22 +29,24 @@ const useStyles = makeStyles({
 
 export default function CardProduct(props) {
     const classes = useStyles();
+    const addToCart = props.addToCart;
     const {id, productName, unitPrice , productType } = props.product
 
-    const addToCart = (info) => {
-        alert( "1 " + info.productName  + " a été ajouté au panier")
-        if(props.cart.filter(prod => prod.productName === info.productName) > -1){
-            props.setCart(prevCart => [...prevCart,{nom : info.productName, nombre: 1 }]);
-        }else {
-            props.setCart(prevCart => [...prevCart,{nom : info.productName, nombre: 2 }]);
-        }
+    // const addToCart = (info) => {
+    //     alert( "1 " + info.productName  + " a été ajouté au panier")
+    //     if(props.cart.filter(prod => prod.productName === info.productName) > -1){
+    //         props.setCart(prevCart => [...prevCart,{nom : info.productName, nombre: 1 }]);
+    //     }else {
+    //         props.setCart(prevCart => [...prevCart,{nom : info.productName, nombre: 2 }]);
+    //     }
         
-    }
+    // }
 
     return (
-        <Link to={`/produit/${id}`}>
+        // <Link to={`/produit/${id}`}>
         <Card className={classes.root} variant="outlined">
             <CardContent>
+                <img src={defaultImage}/>
                 <Typography variant="h5" component="h2">
                     {productName}
                 </Typography>
@@ -51,13 +54,13 @@ export default function CardProduct(props) {
                     {productType}
                 </Typography>
                 <Typography variant="body2" component="p">
-                    {unitPrice} €/Unité
+                    {unitPrice} €/Kg
                 </Typography>
             </CardContent>
             <CardActions className={classes.cardAction}>
-                <Button className={classes.btn} size="Large" onClick={() => addToCart(props)}>Ajouter</Button>
+                <Button className={classes.btn} size="Large" onClick={() => addToCart(props.product)}>Ajouter</Button>
             </CardActions>
         </Card>
-        </Link>
+        // </Link>
     );
 }

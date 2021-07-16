@@ -1,29 +1,19 @@
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../constants/constants'
 
-import { ADD_TO_CART , REMOVE_FROM_CART , CART_RESET} from '../constants/cartConstants'
-import axiosInstance from "../../components/axiosInstance";
-
-export const addToCart = produit => {
+export const addToCart = data => {
     return {
         type: ADD_TO_CART,
-        payload: produit
-    }
-}
-export const removeToCart = () => {
-    return {
-        type: REMOVE_FROM_CART
-    }
-}
-export const cartReset = () => {
-    return {
-        type: CART_RESET
+        payload: data /* Object */
     }
 }
 
-export const apiCall = ligneProduit => {
-    return dispatch => {
 
-        dispatch(addProductToCart(ligneProduit))
-
-        axiosInstance.post("/ligne-de-produits",ligneProduit)
-    }
+export const removeFromCart = (items, product) => dispatch => {
+    const cartItems = items.slice().filter(x => x.id !== product.id)
+    dispatch({
+        type: REMOVE_FROM_CART,
+        payload: { cartItems }
+    })
+    localStorage.setItem("cartItems", JSON.stringify(cartItems))
 }
+

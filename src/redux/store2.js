@@ -5,11 +5,12 @@ import productReducer from "./reducers/productReducer";
 import { cartReducer } from "./reducers/cartReducers2";
 
 const rootReducer = combineReducers({
+    allProducts: productReducer,
     cart: cartReducer,
 })
 
 
 
-const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)));
+const store2 = createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)));
 
-export default store
+export default store2

@@ -18,7 +18,7 @@ import axios from 'axios';
 const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
-    },
+    }
 }));
 
 const initialValues = {
@@ -48,7 +48,7 @@ export default function Connexion() {
             }).then(res => {
                 console.log(res.data.id_token);
                 localStorage.setItem("JWT",res.data.id_token);
-                history.push("/listerProduits");
+                history.push("/");
                 window.location.reload();
             })
     }

@@ -1,20 +1,21 @@
-import { SET_PRODUCTS , SELECTED_PRODUCT , REMOVE_SELECTED_PRODUCT } from '../constants/productsConstants'
+import { FILTER_PRODUCTS_BY_TYPE, ORDER_PRODUCTS_BY_PRICE } from '../constants/constants'
 
-const initialStateProducts = {
-    products:[{
-        id:5000,
-        name : "Carotte",
-        price : 0.20,
-        type : "Légume"
-    }
-    ]
-}
 
-const productReducer = (state = initialStateProducts, action) => {
+const productReducer = (state = {}, action) => {
     switch (action.type) {
-        case SET_PRODUCTS :
-            return state
-    
+        case FILTER_PRODUCTS_BY_TYPE:
+            return {
+                ...state,
+                type: action.payload.type,
+                filteredItems: action.payload.items,
+            }
+        case ORDER_PRODUCTS_BY_PRICE:
+            return {
+                ...state,
+                sort: action.payload.sort,
+                filteredItems: action.payload.items,
+            }
+
         default:
             return state
     }
