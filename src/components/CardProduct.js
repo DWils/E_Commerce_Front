@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import defaultImage from '../img/defaultImage.png'
+import ImageProduit from './ImageProduit';
 
 const useStyles = makeStyles({
     root: {
@@ -32,21 +33,11 @@ export default function CardProduct(props) {
     const addToCart = props.addToCart;
     const {id, productName, unitPrice , productType } = props.product
 
-    // const addToCart = (info) => {
-    //     alert( "1 " + info.productName  + " a été ajouté au panier")
-    //     if(props.cart.filter(prod => prod.productName === info.productName) > -1){
-    //         props.setCart(prevCart => [...prevCart,{nom : info.productName, nombre: 1 }]);
-    //     }else {
-    //         props.setCart(prevCart => [...prevCart,{nom : info.productName, nombre: 2 }]);
-    //     }
-        
-    // }
-
     return (
         // <Link to={`/produit/${id}`}>
         <Card className={classes.root} variant="outlined">
             <CardContent>
-                <img src={defaultImage}/>
+                <ImageProduit productName={productName}/>
                 <Typography variant="h5" component="h2">
                     {productName}
                 </Typography>
